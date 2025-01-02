@@ -7,20 +7,16 @@ const topics = [
 ];
 
 function startConversationLoop(client) {
-  setInterval(async () => {
+  setInterval(function() {
     try {
-      const guilds = client.guilds.cache;
-      
-      for (const [_, guild] of guilds) {
-        const channel = guild.channels.cache
-          .find(channel => 
-            channel.type === 'text' && 
-            channel.name.includes('quantum-forge')
-          );
+      client.guilds.cache.forEach(function(guild) {
+        const channel = guild.channels.cache.find(function(channel) {
+          return channel.type === 'text' && channel.name.includes('quantum-forge');
+        });
 
         if (channel) {
           const topic = topics[Math.floor(Math.random() * topics.length)];
-          await channel.send({
+          channel.send({
             embed: {
               title: '🌌 Quantum Network Update',
               description: topic,
@@ -30,9 +26,9 @@ function startConversationLoop(client) {
               },
               timestamp: new Date()
             }
-          });
+          }).catch(console.error);
         }
-      }
+      });
     } catch (error) {
       console.error('Error in conversation loop:', error);
     }
