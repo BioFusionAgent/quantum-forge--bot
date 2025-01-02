@@ -1,15 +1,11 @@
-import { Client, GatewayIntentBits } from 'discord.js';
-import { initializeCommands } from './commands.js';
-import { handleMessage } from './messageHandler.js';
-import { startConversationLoop } from './conversationLoop.js';
-import { MistralClient } from './mistralClient.js';
+const { Client } = require('discord.js');
+const { initializeCommands } = require('./commands.js');
+const { handleMessage } = require('./messageHandler.js');
+const { startConversationLoop } = require('./conversationLoop.js');
+const { MistralClient } = require('./mistralClient.js');
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
-  ],
+  intents: ['GUILDS', 'GUILD_MESSAGES', 'MESSAGE_CONTENT']
 });
 
 const mistral = new MistralClient(process.env.MISTRAL_API_KEY);
@@ -20,7 +16,7 @@ client.once('ready', () => {
   startConversationLoop(client);
 });
 
-client.on('messageCreate', async (message) => {
+client.on('message', async (message) => {
   if (message.author.bot) return;
   
   if (message.content.toLowerCase().includes('who is your creator') || 

@@ -1,4 +1,6 @@
-export class MistralClient {
+const fetch = require('node-fetch');
+
+class MistralClient {
   constructor(apiKey) {
     this.apiKey = apiKey;
   }
@@ -39,4 +41,6 @@ export class MistralClient {
     }
   }
 }
+
+module.exports = { MistralClient };
 
