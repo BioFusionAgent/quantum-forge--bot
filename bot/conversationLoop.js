@@ -28,14 +28,18 @@ const topics = [
 function startConversationLoop(client) {
   setInterval(function() {
     try {
-      client.guilds.cache.forEach(function(guild) {
-        const channel = guild.channels.cache.find(function(channel) {
-          return channel.type === 'text' && channel.name.includes('quantum-forge');
+      // In Discord.js v11, we access guilds directly
+      client.guilds.array().forEach(function(guild) {
+        // Find text channels
+        const channel = guild.channels.find(function(ch) {
+          return ch.type === 'text' && ch.name.includes('quantum-forge');
         });
 
         if (channel) {
           const topic = topics[Math.floor(Math.random() * topics.length)];
-          channel.send(`**${topic.title}**\n${topic.content}`);
+          channel.send(`**${topic.title}**\n${topic.content}`).catch(function(error) {
+            console.error('Error sending message:', error);
+          });
         }
       });
     } catch (error) {
