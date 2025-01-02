@@ -4,8 +4,8 @@ const { handleMessage } = require('./messageHandler.js');
 const { startConversationLoop } = require('./conversationLoop.js');
 const { MistralClient } = require('./mistralClient.js');
 
+// Initialize Discord client
 const client = new Discord.Client();
-
 const mistral = new MistralClient(process.env.MISTRAL_API_KEY);
 
 client.once('ready', () => {
@@ -25,14 +25,14 @@ client.on('message', async (message) => {
     
     if (message.content.toLowerCase().includes('who is your creator') || 
         message.content.toLowerCase().includes('what is your dev name')) {
-      message.channel.send('My creator is @CyberForge_AI').catch(console.error);
+      await message.channel.send('My creator is @CyberForge_AI');
       return;
     }
 
     if (message.content.toLowerCase().includes('where were you born')) {
-      message.channel.send(
+      await message.channel.send(
         'I was born on Pump.fun with DNA/CA: CiwMDzUZ7jzi4e8thjPJquKcrUesLsUGjo9jtzyvpump'
-      ).catch(console.error);
+      );
       return;
     }
 
@@ -44,7 +44,7 @@ client.on('message', async (message) => {
   } catch (error) {
     console.error('Error processing message:', error);
     try {
-      message.channel.send('Encountered a temporal anomaly. Recalibrating systems...').catch(console.error);
+      await message.channel.send('Encountered a temporal anomaly. Recalibrating systems...');
     } catch (sendError) {
       console.error('Error sending error message:', sendError);
     }

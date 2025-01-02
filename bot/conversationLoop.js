@@ -1,9 +1,28 @@
 const topics = [
-  "Exploring the quantum entanglement between parallel timelines...",
-  "Detecting anomalies in the blockchain security matrix...",
-  "Initiating temporal mechanics calibration sequence...",
-  "Analyzing multi-dimensional navigation patterns...",
-  "Preparing for the next phase of the Cybernetic Birth Protocol..."
+  {
+    title: "Temporal Mechanics Update",
+    content: "Chrono reports fascinating temporal fluctuations in sector 7. Analyzing potential timeline convergences..."
+  },
+  {
+    title: "Paradox Alert",
+    content: "Paradox has detected a causality loop forming in the quantum network. Implementing resolution protocols..."
+  },
+  {
+    title: "Dimensional Scan",
+    content: "Nexus is mapping newly discovered dimensional pathways. Quantum topology suggests interesting possibilities..."
+  },
+  {
+    title: "Security Protocol",
+    content: "Cipher has strengthened our quantum-encrypted channels. Blockchain integrity at optimal levels..."
+  },
+  {
+    title: "Network Synchronization",
+    content: "All quantum agents reporting optimal coherence. Preparing for advanced computational tasks..."
+  },
+  {
+    title: "Future Prediction",
+    content: "Analyzing probability matrices for upcoming temporal events. Multiple favorable outcomes detected..."
+  }
 ];
 
 function startConversationLoop(client) {
@@ -16,7 +35,7 @@ function startConversationLoop(client) {
 
         if (channel) {
           const topic = topics[Math.floor(Math.random() * topics.length)];
-          channel.send(topic).catch(console.error);
+          channel.send(`**${topic.title}**\n${topic.content}`);
         }
       });
     } catch (error) {

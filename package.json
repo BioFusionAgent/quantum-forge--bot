@@ -4,8 +4,7 @@
   "description": "Quantum-Forge Discord Bot",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js"
   },
   "engines": {
     "node": "10.x",
