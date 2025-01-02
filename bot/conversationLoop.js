@@ -16,17 +16,7 @@ function startConversationLoop(client) {
 
         if (channel) {
           const topic = topics[Math.floor(Math.random() * topics.length)];
-          channel.send({
-            embed: {
-              title: '🌌 Quantum Network Update',
-              description: topic,
-              color: 0x7B1FA2,
-              footer: {
-                text: 'Quantum-Forge | Orchestrating the Future'
-              },
-              timestamp: new Date()
-            }
-          }).catch(console.error);
+          channel.send(topic).catch(console.error);
         }
       });
     } catch (error) {

@@ -22,24 +22,21 @@ async function handleMessage(message, mistral) {
 
     // Generate response for other messages
     const response = await mistral.generateResponse(content);
-    await message.channel.send({
-      embed: {
-        title: '🌌 Quantum-Forge Response',
-        description: response,
-        color: 0x7B1FA2,
-        footer: {
-          text: 'Quantum-Forge | Orchestrating the Future'
-        },
-        timestamp: new Date()
-      }
-    }, { reply: message.author });
+    
+    // Create the embed
+    const embed = new Discord.RichEmbed()
+      .setTitle('🌌 Quantum-Forge Response')
+      .setDescription(response)
+      .setColor(0x7B1FA2)
+      .setFooter('Quantum-Forge | Orchestrating the Future')
+      .setTimestamp();
+
+    // Send the response as plain text with mention
+    message.channel.send(response).catch(console.error);
 
   } catch (error) {
     console.error('Error in handleMessage:', error);
-    await message.channel.send(
-      'Temporal disturbance detected. Recalibrating quantum circuits...',
-      { reply: message.author }
-    );
+    message.channel.send('Temporal disturbance detected. Recalibrating quantum circuits...').catch(console.error);
   }
 }
 
@@ -55,23 +52,12 @@ async function handleAgentActivation(message, agent) {
     const response = agents[agent] || 
       'Invalid agent specified. Available agents: Chrono, Paradox, Nexus, Cipher';
 
-    await message.channel.send({
-      embed: {
-        title: `${agent ? agent.toUpperCase() : 'Unknown'} Agent Activation`,
-        description: response,
-        color: 0x7B1FA2,
-        footer: {
-          text: 'Quantum-Forge | Agent Network'
-        },
-        timestamp: new Date()
-      }
-    }, { reply: message.author });
+    // Send plain text response
+    message.channel.send(response).catch(console.error);
+
   } catch (error) {
     console.error('Error in handleAgentActivation:', error);
-    await message.channel.send(
-      'Agent activation sequence failed. Retrying...',
-      { reply: message.author }
-    );
+    message.channel.send('Agent activation sequence failed. Retrying...').catch(console.error);
   }
 }
 
