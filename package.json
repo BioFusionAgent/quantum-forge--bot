@@ -1,27 +1,19 @@
-{
-  "name": "glitch-hello-node",
-  "version": "0.1.0",
-  "description": "A simple Node app built on fastify, instantly up and running. Built to be remixed on Glitch.com.",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "fastify": "^4.21.0",
-    "handlebars": "^4.7.8",
-    "@fastify/formbody": "^7.4.0",
-    "@fastify/static": "^6.10.2",
-    "@fastify/view": "^8.0.0"
-  },
-  "engines": {
-    "node": "14.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/glitch-hello-node"
-  },
-  "license": "MIT",
-  "keywords": [
-    "node",
-    "glitch"
-  ]
-}
+import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import './bot/index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Quantum-Forge is active and maintaining quantum stability...');
+});
+
+app.listen(port, () => {
+  console.log(`Quantum-Forge server is running on port ${port}`);
+});
+
