@@ -4,17 +4,20 @@
   "description": "Quantum-Forge Discord Bot",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "echo 'No build step required'",
+    "install": "npm install --production"
   },
   "engines": {
-    "node": "10.x",
-    "npm": "6.x"
+    "node": "16.x",
+    "npm": "8.x"
   },
   "dependencies": {
     "discord.js": "11.6.4",
     "express": "4.17.1",
     "node-fetch": "2.6.1"
   },
+  "devDependencies": {},
   "keywords": [
     "discord",
     "bot",
